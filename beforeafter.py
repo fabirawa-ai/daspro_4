@@ -14,7 +14,13 @@ def detiksincemidnight(j:Waktu) -> int:
 def is_halfday(j:Waktu)->bool:
     return((getjam(j)) == 12 and (getmenit(j)) == 0 and (getdetik(j)) == 0)
 
-def isbefore_isAfter(w1:Waktu, w2:Waktu)->bool:
+def isbefore(w1:Waktu, w2:Waktu)->bool:
+    if (getjam(w1) < getjam(w2)) and ((getmenit(w1) >= getmenit(w2)) or (getdetik(w1) >= getdetik(w2))) : return  True
+    elif (getmenit(w1) < getmenit(w2) and (getdetik(w1) >= getdetik(w2))): return  True
+    elif (getdetik (w1) < getdetik (w2)) and (getmenit(w1) >= getmenit(w2)): return  True
+    else: return  False
+
+def isafter(w1:Waktu, w2:Waktu)->bool:
     if (getjam(w1) > getjam(w2)) and ((getmenit(w1) <= getmenit(w2)) or (getdetik(w1) <= getdetik(w2))) : return  True
     elif (getmenit(w1) > getmenit(w2) and (getdetik(w1) <= getdetik(w2))): return  True
     elif (getdetik (w1) > getdetik (w2)) and (getmenit(w1) <= getmenit(w2)): return  True
@@ -24,11 +30,10 @@ def isbefore_isAfter(w1:Waktu, w2:Waktu)->bool:
 
 
 
-
 print(detiksincemidnight(((2),(30),(0))))
 print(is_halfday((12,0,0)))
 
-print(isbefore_isAfter(
+print(isbefore(
     ((2,30,10)),
     ((2,10,10))
 ))
